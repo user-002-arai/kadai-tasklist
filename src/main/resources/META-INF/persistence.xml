@@ -13,6 +13,7 @@ xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml
   <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost/task?useSSL=false&amp;allowPublicKeyRetrieval=true"/>
   <property name="jakarta.persistence.jdbc.user" value="taskuser"/>
   <property name="jakarta.persistence.jdbc.password" value="taskpass"/>
+  <property name="jakarta.persistence.provider" value="org.hibernate.jpa.HibernatePersistenceProvider"/>
 
 
   <!-- Hibernate 6.x では MySQLDialect を使用 -->
