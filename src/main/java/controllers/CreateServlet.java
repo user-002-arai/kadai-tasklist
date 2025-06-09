@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import model.task;
+import model.Task;
 import util.DBUtil;
 
 /**
@@ -36,7 +36,7 @@ public class CreateServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
             em.getTransaction().begin();
 
-            task m = new task();
+            Task m = new Task();
 
             String content = request.getParameter("content");
             m.setContent(content);

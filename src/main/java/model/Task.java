@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
     )
 })
 @Table(name = "tasks")
-public class task {
+public class Task {
     //idカラムを設定（プライマリーキー）
     @Id
     @Column(name = "id")
