@@ -1,9 +1,7 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.List;
 
-import jakarta.persistence.EntityManager;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,36 +10,33 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import model.task;
-import util.DBUtil;
 
 /**
- * Servlet implementation class IndexServlet
+ * Servlet implementation class NewServlet
  */
-@WebServlet("/index")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/new")
+public class NewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexServlet() {
+    public NewServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = DBUtil.createEntityManager();
+        // CSRF対策
+        request.setAttribute("_token", request.getSession().getId());
 
-        List<task> tasks = em.createNamedQuery("getAllTasks", task.class).getResultList();
-        response.getWriter().append(Integer.valueOf(tasks.size()).toString());
+        // おまじないとしてのインスタンスを生成
+        request.setAttribute("task", new task());
 
-        em.close();
-        
-        request.setAttribute("tasks", tasks);
-
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/new.jsp");
         rd.forward(request, response);
     }
 
